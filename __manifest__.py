@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/12.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Attendance',
-    'version': '0.2',
+    'version': '0.3',
     'application': True,
 
     # any module necessary for this one to work correctly
@@ -26,7 +26,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
+        'views/books.xml',
         'views/templates.xml',
     ],
     # only loaded in demonstration mode

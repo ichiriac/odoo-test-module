@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="view_books">
+      <field name="name">Book listing</field>
+      <field name="model">f2f_test_module.books</field>
+      <field name="arch" type="xml">
+        <tree string="Listing des livres">
+          <field name="photo" widget="image" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" />
+          <field name="title"/>
+          <field name="ISBN"/>
+          <field name="edition_date"/>
+          <field name="short_description"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="form_books">
+      <field name="name">Books</field>
+      <field name="model">f2f_test_module.books</field>
+      <field name="arch" type="xml">
+      <form string="Course Form">
+          <sheet>
+              <group>
+                <separator string="Général"/>
+                <field name="title"/>
+                <field name="short_description"/>          
+                <field name="photo" widget="image" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}" />
+                <field name="ISBN"/>
+              </group>
+              <notebook colspan="4">
+                <page string="Auteurs">
+                  <field name="authors">
+                    <tree>
+                      <field name="display_name"/>
+                      <field name="email"/>
+                      <field name="phone"/>
+                      <button
+                        string="View"
+                        type="object"
+                        name="open_partner"
+                        class="oe_highlight" />
+                    </tree>
+                  </field>
+                </page>
+                <page string="Editeurs">
+                  <field name="editors"/>
+                </page>
+              </notebook>
+          </sheet>
+      </form>
+    </field>
+    </record>
+
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="f2f_test_module.action_books">
+      <field name="name">Test Module</field>
+      <field name="res_model">f2f_test_module.books</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="f2f_test_module.action_server">
+      <field name="name">f2f_test_module server</field>
+      <field name="model_id" ref="model_f2f_test_module_f2f_test_module"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <menuitem 
+      name="Test" 
+      id="f2f_test_module.root"
+      action="action_books" />
+  </data>
+</odoo>
